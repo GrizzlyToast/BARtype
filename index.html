@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Random Quote Generator</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Quote Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-    <body>
-        <h1>Welcome to BARType. Ready to start typing?</h1>
+  <body>
+    <h1>Welcome to BARType. Ready to start typing?</h1>
 
-        <!-- Text Content Generation -->
-        <button id="generate-txt-btn">Get New Text</button>
-        <div id="sample-generated-text">Follow the sample text provided here</div>
+    <!-- Text Content Generation -->
+    <button id="generate-txt-btn">Get New Text</button>
+    <div id="sample-generated-text">Follow the sample text provided here</div>
 
-        <h2>Type anything to capture your input</h2>
+    <h2>Type anything to capture your input</h2>
 
-        <!-- Text input area -->
-        <textarea class="input-area" id="inputBox" placeholder="Start typing here..."></textarea>
+    <!-- Text input area -->
+    <textarea
+      class="input-area"
+      id="inputBox"
+      placeholder="Start typing here..."
+    ></textarea>
 
-        <!-- Display area for showing the typed input -->
-        <div class="display-area" id="displayArea"></div>
+    <!-- Display area for showing the typed input -->
+    <div class="display-area" id="displayArea"></div>
 
-        <script src="script.js"></script>
-    </body>
+    <!-- Reset Button-->
+    <button class="reset-button" id="resetButton">Reset</button>
+
+    <script src="script.js"></script>
+  </body>
 </html>
