@@ -1,24 +1,29 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 50px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 50px;
 }
 #sample-generated-text {
-    margin: 20px;
-    font-size: 1.5em;
-    color: #333;
+  margin: 20px;
+  font-size: 1.5em;
+  color: #333;
 }
 #generate-txt-btn {
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
 }
 
 .input-area {
-    font-family: Arial, sans-serif;
-    width: 40em;
-    height: 10em;
-    font-size: 24px;
-    margin: 20px;
-    padding: 10px;
+  font-family: Arial, sans-serif;
+  width: 40em;
+  height: 10em;
+  font-size: 24px;
+  margin: 20px;
+  padding: 10px;
+}
+
+span.wrong-letter {
+  color: red;
+  font-weight: bold;
 }
