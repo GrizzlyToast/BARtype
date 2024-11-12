@@ -5,15 +5,27 @@ const generateText = document.getElementById("generate-txt-btn");
 const reset = document.getElementById("resetButton");
 const sampleText = document.getElementById("sample-generated-text");
 const sample = sampleText.textContent;
-keyIndex = -1;
+keyIndex = 0;
 
 // Add an event listener to capture input when the user types
-inputBox.addEventListener("input", function () {
-  // Get the value of the input
-  const userInput = inputBox.value;
+inputBox.addEventListener("input", function (e) {
+  const text = e.target.value;
+  let formattedText = "";
 
-  // Display the typed input
-  displayArea.textContent = userInput;
+  // Iterate through each character in the input text
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+
+    // Mark mistakes red
+    if (sample[i] !== char) {
+      formattedText += `<span class="wrong-letter">${char}</span>`;
+    } else {
+      formattedText += char;
+    }
+  }
+
+  // Update the display area with the formatted text
+  document.getElementById("displayArea").innerHTML = formattedText;
 });
 
 // //Add an event listener to fetch new text from api
@@ -50,18 +62,3 @@ function resetText() {
 generateText.addEventListener("click", function () {
   sampleText.textContent = "Hello World";
 });
-
-function checkMistake(letter) {
-  if (letter == "Backspace") {
-    if (keyIndex != -1) {
-      keyIndex--;
-    }
-  } else {
-    keyIndex++;
-  }
-
-  if (keyIndex > -1 && sample[keyIndex] != letter) {
-    return true;
-  }
-  return false;
-}
