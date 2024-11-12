@@ -5,7 +5,8 @@ const generateText = document.getElementById("generate-txt-btn");
 const reset = document.getElementById("resetButton");
 const sampleText = document.getElementById("sample-generated-text");
 const sample = sampleText.textContent;
-keyIndex = -1;
+keyIndex = 0;
+keyBitMap = [];
 
 // Add an event listener to capture input when the user types
 inputBox.addEventListener("input", function () {
@@ -51,17 +52,31 @@ generateText.addEventListener("click", function () {
   sampleText.textContent = "Hello World";
 });
 
-function checkMistake(letter) {
-  if (letter == "Backspace") {
-    if (keyIndex != -1) {
+inputBox.addEventListener("keydown", function (e) {
+  // Check for text deletion
+  if (e.key == "Backspace") {
+    keyBitMap.pop();
+    if (keyIndex > 0) {
       keyIndex--;
     }
-  } else {
+    // Record text mistakes
+  } else if (e.code === `Key${e.key.toUpperCase()}`) {
+    if (sample[keyIndex] !== e.key) {
+      keyBitMap.push(true);
+    } else {
+      keyBitMap.push(false);
+    }
     keyIndex++;
   }
 
-  if (keyIndex > -1 && sample[keyIndex] != letter) {
-    return true;
-  }
-  return false;
-}
+  console.log(keyBitMap);
+
+  const text = e.target.value;
+  const lastChar = text.slice(-1);
+
+  const restOfText = text.slice(0, -1);
+
+  // if () {
+  //   displayArea.innerHTML = `${restOfText}<span class="wrong-letter">${lastChar}</span>`;
+  // }
+});
