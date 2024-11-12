@@ -6,15 +6,26 @@ const reset = document.getElementById("resetButton");
 const sampleText = document.getElementById("sample-generated-text");
 const sample = sampleText.textContent;
 keyIndex = 0;
-keyBitMap = [];
 
 // Add an event listener to capture input when the user types
-inputBox.addEventListener("input", function () {
-  // Get the value of the input
-  const userInput = inputBox.value;
+inputBox.addEventListener("input", function (e) {
+  const text = e.target.value;
+  let formattedText = "";
 
-  // Display the typed input
-  displayArea.textContent = userInput;
+  // Iterate through each character in the input text
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+
+    // Mark mistakes red
+    if (sample[i] !== char) {
+      formattedText += `<span class="wrong-letter">${char}</span>`;
+    } else {
+      formattedText += char;
+    }
+  }
+
+  // Update the display area with the formatted text
+  document.getElementById("displayArea").innerHTML = formattedText;
 });
 
 // //Add an event listener to fetch new text from api
@@ -50,33 +61,4 @@ function resetText() {
 // demo text
 generateText.addEventListener("click", function () {
   sampleText.textContent = "Hello World";
-});
-
-inputBox.addEventListener("keydown", function (e) {
-  // Check for text deletion
-  if (e.key == "Backspace") {
-    keyBitMap.pop();
-    if (keyIndex > 0) {
-      keyIndex--;
-    }
-    // Record text mistakes
-  } else if (e.code === `Key${e.key.toUpperCase()}`) {
-    if (sample[keyIndex] !== e.key) {
-      keyBitMap.push(true);
-    } else {
-      keyBitMap.push(false);
-    }
-    keyIndex++;
-  }
-
-  console.log(keyBitMap);
-
-  const text = e.target.value;
-  const lastChar = text.slice(-1);
-
-  const restOfText = text.slice(0, -1);
-
-  // if () {
-  //   displayArea.innerHTML = `${restOfText}<span class="wrong-letter">${lastChar}</span>`;
-  // }
 });
